@@ -1,9 +1,10 @@
+
 import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginViewBody extends StatelessWidget {
-  const LoginViewBody({super.key});
+class RegisterViewBody extends StatelessWidget {
+  const RegisterViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class LoginViewBody extends StatelessWidget {
           const Row(
             children: [
               Text(
-                'LOGIN',
+                'REGISTER',
                 style: TextStyle(fontSize: 24, color: Colors.white),
               ),
             ],
@@ -47,7 +48,7 @@ class LoginViewBody extends StatelessWidget {
             height: 20,
           ),
           const CustomButton(
-            name: 'LOGIN',
+            name: 'REGISTER',
           ),
           const SizedBox(
             height: 10,
@@ -56,7 +57,7 @@ class LoginViewBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                "don't have an Account?",
+                "Already have an Account?",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
@@ -64,10 +65,10 @@ class LoginViewBody extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, 'RegisterView');
+                  Navigator.pop(context);
                 },
                 child: const Text(
-                  "Register",
+                  "LOGIN",
                   style: TextStyle(
                     color: Color(0xffC7EDE6),
                     fontSize: 18,
