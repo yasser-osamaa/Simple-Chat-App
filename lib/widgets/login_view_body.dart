@@ -1,3 +1,4 @@
+import 'package:chat_app/views/register_view.dart';
 import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class LoginViewBody extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, 'RegisterView');
+                  Navigator.pushNamed(context, RegisterView.id);
                 },
                 child: const Text(
                   "Register",

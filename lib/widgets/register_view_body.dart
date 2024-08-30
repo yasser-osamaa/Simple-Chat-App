@@ -1,4 +1,3 @@
-
 import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +67,7 @@ class RegisterViewBody extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 child: const Text(
-                  "LOGIN",
+                  "Login",
                   style: TextStyle(
                     color: Color(0xffC7EDE6),
                     fontSize: 18,
