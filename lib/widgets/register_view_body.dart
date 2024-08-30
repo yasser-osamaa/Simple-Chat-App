@@ -9,77 +9,76 @@ class RegisterViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Column(
-        children: [
-          const Spacer(
-            flex: 2,
-          ),
-          Image.asset('assets/images/scholar.png'),
-          const Text(
-            'ScholarChat',
-            style: TextStyle(
-                fontSize: 32, fontFamily: 'Pacifico', color: Colors.white),
-          ),
-          const Spacer(
-            flex: 2,
-          ),
-          const Row(
-            children: [
-              Text(
-                'REGISTER',
-                style: TextStyle(fontSize: 24, color: Colors.white),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const CustomTextField(
-            hintText: 'Email',
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const CustomTextField(
-            hintText: 'Password',
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const CustomButton(
-            name: 'REGISTER',
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Already have an Account?",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 80,
+            ),
+            Image.asset('assets/images/scholar.png'),
+            const Text(
+              'ScholarChat',
+              style: TextStyle(
+                  fontSize: 32, fontFamily: 'Pacifico', color: Colors.white),
+            ),
+            const SizedBox(
+              height: 80,
+            ),
+            const Row(
+              children: [
+                Text(
+                  'REGISTER',
+                  style: TextStyle(fontSize: 24, color: Colors.white),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  "Login",
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const CustomTextField(
+              hintText: 'Email',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const CustomTextField(
+              hintText: 'Password',
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const CustomButton(
+              name: 'REGISTER',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Already have an Account?",
                   style: TextStyle(
-                    color: Color(0xffC7EDE6),
+                    color: Colors.white,
                     fontSize: 18,
                   ),
                 ),
-              ),
-            ],
-          ),
-          const Spacer(
-            flex: 4,
-          ),
-        ],
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(
+                      color: Color(0xffC7EDE6),
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
