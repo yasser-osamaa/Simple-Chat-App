@@ -64,14 +64,17 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             CustomButton(
               onTap: () async {
                 try {
-                  UserCredential user = await FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                    email: email!,
-                    password: password!,
-                  );
-                  debugPrint(user.user!.email);
-                } on AuthCredential catch (e) {
-                  debugPrint(e.toString());
+                  await registerUser();
+                  // ignore: use_build_context_synchronously
+                  showSnackBar(context, 'Registration is Done');
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'weak-password') {
+                    // ignore: use_build_context_synchronously
+                    showSnackBar(context, 'Weak Password');
+                  } else if (e.code == 'email-already-in-use') {
+                    // ignore: use_build_context_synchronously
+                    showSnackBar(context, 'Email Already Exist');
+                  }
                 }
               },
               name: 'REGISTER',
@@ -106,6 +109,23 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
           ],
         ),
       ),
+    );
+  }
+
+  void showSnackBar(context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
+  Future<void> registerUser() async {
+    // ignore: unused_local_variable
+    UserCredential user =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email!,
+      password: password!,
     );
   }
 }
