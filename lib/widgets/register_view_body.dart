@@ -1,9 +1,17 @@
 import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class RegisterViewBody extends StatelessWidget {
+class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
+
+  @override
+  State<RegisterViewBody> createState() => _RegisterViewBodyState();
+}
+
+class _RegisterViewBodyState extends State<RegisterViewBody> {
+  String? email, password;
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +43,37 @@ class RegisterViewBody extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const CustomTextField(
+            CustomTextField(
+              onChanged: (value) {
+                email = value;
+              },
               hintText: 'Email',
             ),
             const SizedBox(
               height: 10,
             ),
-            const CustomTextField(
+            CustomTextField(
+              onChanged: (value) {
+                password = value;
+              },
               hintText: 'Password',
             ),
             const SizedBox(
               height: 20,
             ),
-            const CustomButton(
+            CustomButton(
+              onTap: () async {
+                try {
+                  UserCredential user = await FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                    email: email!,
+                    password: password!,
+                  );
+                  debugPrint(user.user!.email);
+                } on AuthCredential catch (e) {
+                  debugPrint(e.toString());
+                }
+              },
               name: 'REGISTER',
             ),
             const SizedBox(
