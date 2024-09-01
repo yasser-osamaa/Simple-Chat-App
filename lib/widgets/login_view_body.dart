@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/views/register_view.dart';
 import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
@@ -54,7 +55,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 const SizedBox(
                   height: 20,
                 ),
-                CustomTextField(
+                CustomTextFormField(
                   onChanged: (value) {
                     email = value;
                   },
@@ -63,7 +64,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomTextField(
+                CustomTextFormField(
                   onChanged: (value) {
                     password = value;
                   },
@@ -82,12 +83,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         await loginUser();
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
-                          customSnackBar(context, 'User Not Found');
+                          showSnackBar(context, 'User Not Found');
                         } else if (e.code == 'wrong-password') {
-                          customSnackBar(context, 'Wrong Password');
+                          showSnackBar(context, 'Wrong Password');
                         }
                       } catch (e) {
-                        customSnackBar(context, 'There was an Error!');
+                        showSnackBar(context, 'There was an Error!');
                       }
                       setState(() {
                         isLoading = false;
@@ -135,13 +136,5 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     // ignore: unused_local_variable
     UserCredential user = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email!, password: password!);
-  }
-
-  void customSnackBar(BuildContext context, String text) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(text),
-      ),
-    );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 const SizedBox(
                   height: 20,
                 ),
-                CustomTextField(
+                CustomTextFormField(
                   onChanged: (value) {
                     email = value;
                   },
@@ -60,7 +61,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomTextField(
+                CustomTextFormField(
                   onChanged: (value) {
                     password = value;
                   },
@@ -133,13 +134,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
     );
   }
 
-  void showSnackBar(context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
-  }
+
 
   Future<void> registerUser() async {
     // ignore: unused_local_variable
