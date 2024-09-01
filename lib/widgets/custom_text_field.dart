@@ -10,6 +10,8 @@ class CustomTextField extends StatelessWidget {
       validator: (value) {
         if (value!.isEmpty) {
           return 'Field is Required';
+        } else {
+          return null;
         }
       },
       onChanged: onChanged,
