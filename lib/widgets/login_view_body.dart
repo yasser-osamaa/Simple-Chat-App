@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:chat_app/helper/show_snack_bar.dart';
+import 'package:chat_app/views/chat_view.dart';
 import 'package:chat_app/views/register_view.dart';
 import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
@@ -81,6 +82,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       });
                       try {
                         await loginUser();
+                        Navigator.pushNamed(context, ChatView.id);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           showSnackBar(context, 'User Not Found');

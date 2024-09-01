@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:chat_app/helper/show_snack_bar.dart';
+import 'package:chat_app/views/chat_view.dart';
 import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -78,18 +81,15 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       });
                       try {
                         await registerUser();
-                        // ignore: use_build_context_synchronously
-                        showSnackBar(context, 'Registration is Done');
+
+                        Navigator.pushNamed(context, ChatView.id);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
-                          // ignore: use_build_context_synchronously
                           showSnackBar(context, 'Weak Password');
                         } else if (e.code == 'email-already-in-use') {
-                          // ignore: use_build_context_synchronously
                           showSnackBar(context, 'Email Already Exist');
                         }
                       } catch (e) {
-                        // ignore: use_build_context_synchronously
                         showSnackBar(context, 'There was an error');
                       }
                       setState(() {
@@ -133,8 +133,6 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
       ),
     );
   }
-
-
 
   Future<void> registerUser() async {
     // ignore: unused_local_variable
