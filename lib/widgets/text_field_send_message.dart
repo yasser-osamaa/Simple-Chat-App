@@ -1,4 +1,5 @@
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -37,6 +38,8 @@ class _CustomSendMessageFieldState extends State<CustomSendMessageField> {
                 message.add({
                   'message': msg,
                 });
+              } else {
+                showSnackBar(context, 'No Message entered', Colors.red);
               }
               msg = null;
               controller.clear();

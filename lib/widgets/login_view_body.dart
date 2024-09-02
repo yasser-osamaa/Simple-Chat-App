@@ -86,12 +86,13 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         Navigator.pushNamed(context, ChatView.id);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
-                          showSnackBar(context, 'User Not Found');
+                          showSnackBar(context, 'User Not Found', Colors.red);
                         } else if (e.code == 'wrong-password') {
-                          showSnackBar(context, 'Wrong Password');
+                          showSnackBar(context, 'Wrong Password', Colors.red);
                         }
                       } catch (e) {
-                        showSnackBar(context, 'There was an Error!');
+                        showSnackBar(
+                            context, 'There was an Error!', Colors.purple);
                       }
                       setState(() {
                         isLoading = false;

@@ -85,12 +85,14 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         Navigator.pushNamed(context, ChatView.id);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
-                          showSnackBar(context, 'Weak Password');
+                          showSnackBar(context, 'Weak Password', Colors.red);
                         } else if (e.code == 'email-already-in-use') {
-                          showSnackBar(context, 'Email Already Exist');
+                          showSnackBar(
+                              context, 'Email Already Exist', Colors.red);
                         }
                       } catch (e) {
-                        showSnackBar(context, 'There was an error');
+                        showSnackBar(
+                            context, 'There was an error', Colors.purple);
                       }
                       setState(() {
                         isLoading = false;
