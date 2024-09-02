@@ -65,6 +65,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                   height: 10,
                 ),
                 CustomTextFormField(
+                  obscureText: true,
                   onChanged: (value) {
                     password = value;
                   },

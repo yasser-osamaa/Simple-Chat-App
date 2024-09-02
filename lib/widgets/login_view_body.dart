@@ -66,6 +66,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   height: 10,
                 ),
                 CustomTextFormField(
+                  obscureText: true,
                   onChanged: (value) {
                     password = value;
                   },

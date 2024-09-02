@@ -1,25 +1,50 @@
 import 'package:chat_app/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CustomSendMessageField extends StatelessWidget {
+class CustomSendMessageField extends StatefulWidget {
   const CustomSendMessageField({
     super.key,
   });
 
   @override
+  State<CustomSendMessageField> createState() => _CustomSendMessageFieldState();
+}
+
+class _CustomSendMessageFieldState extends State<CustomSendMessageField> {
+  CollectionReference message =
+      FirebaseFirestore.instance.collection(kMessageCollections);
+  TextEditingController controller = TextEditingController();
+  String? msg;
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: TextField(
+        controller: controller,
+        onChanged: (value) {
+          msg = value;
+        },
         cursorColor: kPrimaryColor,
         decoration: InputDecoration(
           border: outLineBorder(),
           enabledBorder: outLineBorder(),
           focusedBorder: outLineBorder(),
           hintText: 'Send Message',
-          suffixIcon: const Icon(
-            Icons.send,
-            color: kPrimaryColor,
+          suffixIcon: GestureDetector(
+            onTap: () {
+              if (msg != null) {
+                message.add({
+                  'message': msg,
+                });
+              }
+              msg = null;
+              controller.clear();
+            },
+            child: const Icon(
+              Icons.send,
+              color: kPrimaryColor,
+            ),
           ),
         ),
       ),
