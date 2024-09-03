@@ -1,4 +1,5 @@
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/models/message_model.dart';
 import 'package:chat_app/widgets/chat_bubble.dart';
 import 'package:chat_app/widgets/text_field_send_message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,14 +16,22 @@ class ChatViewBody extends StatelessWidget {
         future: data.get(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
-            debugPrint(snapshot.data!.docs[0]['message']);
+            List<MessageModel> messages = [];
+            // for (var i = 0; i < snapshot.data!.docs.length; i++) {
+            //   messages.add(MessageModel.fromJson(snapshot.data!.docs[i]));
+            // }
+            for (var data in snapshot.data!.docs) {
+              messages.add(MessageModel.fromJson(data));
+            }
             return Column(
               children: [
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 10,
+                    itemCount: messages.length,
                     itemBuilder: (context, index) {
-                      return const ChatBubble();
+                      return ChatBubble(
+                        data: messages[index],
+                      );
                     },
                   ),
                 ),
