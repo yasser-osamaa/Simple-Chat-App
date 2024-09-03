@@ -12,8 +12,8 @@ class ChatViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<QuerySnapshot>(
-        future: data.get(),
+    return StreamBuilder<QuerySnapshot>(
+        stream: data.snapshots(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
             List<MessageModel> messages = [];
