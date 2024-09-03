@@ -9,11 +9,12 @@ class ChatViewBody extends StatelessWidget {
   ChatViewBody({super.key});
   final CollectionReference data =
       FirebaseFirestore.instance.collection(kMessageCollections);
+  final ScrollController ScrController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: data.snapshots(),
+        stream: data.orderBy(kCreatedAt).snapshots(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
             List<MessageModel> messages = [];
@@ -27,6 +28,8 @@ class ChatViewBody extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView.builder(
+                    controller: ScrController,
+                    physics: const BouncingScrollPhysics(),
                     itemCount: messages.length,
                     itemBuilder: (context, index) {
                       return ChatBubble(
@@ -35,7 +38,9 @@ class ChatViewBody extends StatelessWidget {
                     },
                   ),
                 ),
-                const CustomSendMessageField(),
+                CustomSendMessageField(
+                  scrControler: ScrController,
+                ),
               ],
             );
           } else {

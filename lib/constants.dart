@@ -5,3 +5,4 @@ const kReciveMessage = Color(0xff006387);
 const kLogo = 'assets/images/scholar.png';
 const kMessageCollections = 'messages';
 const kMessageDocs = 'message';
+const kCreatedAt = 'Time';

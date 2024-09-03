@@ -6,8 +6,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CustomSendMessageField extends StatefulWidget {
   const CustomSendMessageField({
     super.key,
+    required this.scrControler,
   });
-
+  final ScrollController scrControler;
   @override
   State<CustomSendMessageField> createState() => _CustomSendMessageFieldState();
 }
@@ -36,13 +37,21 @@ class _CustomSendMessageFieldState extends State<CustomSendMessageField> {
             onTap: () {
               if (msg != null) {
                 message.add({
-                  'message': msg,
+                  kMessageDocs: msg,
+                  kCreatedAt: DateTime.now(),
                 });
               } else {
                 showSnackBar(context, 'No Message entered', Colors.red);
               }
               msg = null;
               controller.clear();
+              Future.delayed(const Duration(milliseconds: 100), () {
+                widget.scrControler.animateTo(
+                  widget.scrControler.position.maxScrollExtent,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeOut,
+                );
+              });
             },
             child: const Icon(
               Icons.send,
