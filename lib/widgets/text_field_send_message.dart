@@ -45,13 +45,11 @@ class _CustomSendMessageFieldState extends State<CustomSendMessageField> {
               }
               msg = null;
               controller.clear();
-              Future.delayed(const Duration(milliseconds: 100), () {
-                widget.scrControler.animateTo(
-                  widget.scrControler.position.maxScrollExtent,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeOut,
-                );
-              });
+              widget.scrControler.animateTo(
+                0,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeOut,
+              );
             },
             child: const Icon(
               Icons.send,
