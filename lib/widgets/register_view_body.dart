@@ -19,6 +19,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   String? email, password;
   bool isLoading = false;
   GlobalKey<FormState> formKey = GlobalKey();
+  bool isHiding = true;
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
@@ -65,11 +66,21 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                   height: 10,
                 ),
                 CustomTextFormField(
-                  obscureText: true,
+                  obscureText: isHiding,
                   onChanged: (value) {
                     password = value;
                   },
                   hintText: 'Password',
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isHiding = !isHiding;
+                      });
+                    },
+                    child: isHiding
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
