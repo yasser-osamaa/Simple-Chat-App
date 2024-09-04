@@ -7,6 +7,7 @@ class ChatView extends StatelessWidget {
   static String id = 'chatView';
   @override
   Widget build(BuildContext context) {
+    String email = ModalRoute.of(context)!.settings.arguments as String; 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
@@ -26,7 +27,7 @@ class ChatView extends StatelessWidget {
           ],
         ),
       ),
-      body: ChatViewBody(),
+      body: ChatViewBody(email: email,),
     );
   }
 }

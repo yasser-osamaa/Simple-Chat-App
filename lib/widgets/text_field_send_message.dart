@@ -7,8 +7,10 @@ class CustomSendMessageField extends StatefulWidget {
   const CustomSendMessageField({
     super.key,
     required this.scrControler,
+    required this.email,
   });
   final ScrollController scrControler;
+  final String email;
   @override
   State<CustomSendMessageField> createState() => _CustomSendMessageFieldState();
 }
@@ -39,6 +41,7 @@ class _CustomSendMessageFieldState extends State<CustomSendMessageField> {
                 message.add({
                   kMessageDocs: msg,
                   kCreatedAt: DateTime.now(),
+                  'id': widget.email,
                 });
               } else {
                 showSnackBar(context, 'No Message entered', Colors.red);

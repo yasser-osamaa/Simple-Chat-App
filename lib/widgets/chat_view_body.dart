@@ -6,11 +6,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ChatViewBody extends StatelessWidget {
-  ChatViewBody({super.key});
+  ChatViewBody({super.key, required this.email});
   final CollectionReference data =
       FirebaseFirestore.instance.collection(kMessageCollections);
   final ScrollController scrController = ScrollController();
-
+  final String email;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -41,6 +41,7 @@ class ChatViewBody extends StatelessWidget {
                 ),
                 CustomSendMessageField(
                   scrControler: scrController,
+                  email: email,
                 ),
               ],
             );
