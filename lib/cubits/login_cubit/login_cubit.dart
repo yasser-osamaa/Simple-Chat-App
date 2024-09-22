@@ -19,9 +19,11 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoginFailure(errMsg: 'User Not Found'));
       } else if (e.code == 'wrong-password') {
         emit(LoginFailure(errMsg: 'Wrong Password'));
+      } else {
+        emit(LoginFailure(errMsg: 'not found this email or password'));
       }
     } catch (e) {
-      emit(LoginFailure(errMsg: e.toString()));
+      emit(LoginFailure(errMsg: 'There was an error'));
     }
   }
 }

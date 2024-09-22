@@ -23,6 +23,8 @@ class RegisterCubit extends Cubit<RegisterState> {
         emit(RegisterFailuer(errMsg: 'Weak Password'));
       } else if (e.code == 'email-already-in-use') {
         emit(RegisterFailuer(errMsg: 'Email Already Exist'));
+      } else {
+        emit(RegisterFailuer(errMsg: 'error in this email and password'));
       }
     } catch (e) {
       emit(RegisterFailuer(errMsg: 'something wrong'));
