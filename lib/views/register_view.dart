@@ -7,7 +7,7 @@ class RegisterView extends StatelessWidget {
   static String id = 'RegisterView';
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: kPrimaryColor,
       body: RegisterViewBody(),
     );
