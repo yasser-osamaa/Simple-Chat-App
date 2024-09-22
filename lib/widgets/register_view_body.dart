@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
 
+import 'package:chat_app/cubits/chat_cubit/chat_cubit.dart';
 import 'package:chat_app/cubits/register_cubit/register_cubit.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/views/chat_view.dart';
@@ -24,6 +25,7 @@ class RegisterViewBody extends StatelessWidget {
         if (state is RegisterLoading) {
           isLoading = true;
         } else if (state is RegisterSuccess) {
+          BlocProvider.of<ChatCubit>(context).getMessages();
           Navigator.pushNamed(context, ChatView.id, arguments: email);
           isLoading = false;
         } else if (state is RegisterFailuer) {
