@@ -6,3 +6,4 @@ const kLogo = 'assets/images/scholar.png';
 const kMessageCollections = 'messages';
 const kMessageDocs = 'message';
 const kCreatedAt = 'Time';
+const kId = 'id';
