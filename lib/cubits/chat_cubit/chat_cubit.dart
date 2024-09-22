@@ -1,4 +1,5 @@
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/models/message_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,8 +18,14 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   void getMessages() {
-    msg.orderBy(kCreatedAt, descending: true).snapshots().listen((event) {
-      emit(ChatSuccess());
-    });
+    List<MessageModel> messages = [];
+    msg.orderBy(kCreatedAt, descending: true).snapshots().listen(
+      (event) {
+        for (var doc in event.docs) {
+          messages.add(MessageModel.fromJson(doc));
+        }
+        emit(ChatSuccess(messages: messages));
+      },
+    );
   }
 }
