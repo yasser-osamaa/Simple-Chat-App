@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
 
+import 'package:chat_app/blocs/auth_bloc/auth_bloc.dart';
 import 'package:chat_app/cubits/chat_cubit/chat_cubit.dart';
-import 'package:chat_app/cubits/register_cubit/register_cubit.dart';
 import 'package:chat_app/helper/show_snack_bar.dart';
 import 'package:chat_app/views/chat_view.dart';
 import 'package:chat_app/widgets/custom_button.dart';
@@ -20,7 +20,7 @@ class RegisterViewBody extends StatelessWidget {
   RegisterViewBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RegisterCubit, RegisterState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is RegisterLoading) {
           isLoading = true;
@@ -99,8 +99,8 @@ class RegisterViewBody extends StatelessWidget {
                     CustomButton(
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<RegisterCubit>(context)
-                              .registerUser(email: email!, password: password!);
+                          BlocProvider.of<AuthBloc>(context).add(
+                              AuthRegister(email: email!, password: password!));
                         }
                       },
                       name: 'REGISTER',
